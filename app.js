@@ -5,31 +5,10 @@ const cors = require("cors")
 
 const bodyParser = require('body-parser')
 
-// improve productivity on development
-const morgan = require('morgan')
 
-const users = require('./api/routs/users/user')
-const tavola = require('./api/routs/tavola/tavola')
-const visiting = require('./api/routs/visiting/visiting')
-const menu = require('./api/routs/menu/menu')
-const prova = require('./api/routs/prova')
-const email = require('./api/routs/email/email')
+const rest = require('./api/routs/rest/rest')
 
 
-const mongoose = require('mongoose')
-
-const db_jexp = "mongodb+srv://visiting:visiting@visiting-g3tpj.mongodb.net/test?retryWrites=true&w=majority"
-const db_sushi = "mongodb+srv://sushi:sushi@clustersushi-erhzq.mongodb.net/sushi?retryWrites=true&w=majority"
-
-mongoose.connect(db_jexp,
- { useNewUrlParser: true }, function(error) {
-  // if error is truthy, the initial connection failed.
-  console.log(error);
-})
-
-
-// improve productivity on development
-app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
 
@@ -50,12 +29,8 @@ app.use((req,res,next)=>{
 
 
 // just go to the ather file if you pass me ...
-app.use('/users',users);
-app.use('/Tavola',tavola)
-app.use('/Visiting',visiting)
-app.use('/menu',menu)
-app.use('/prova',prova)
-app.use('/email', email)
+app.use('/rest',rest)
+
 
 
 // if the user requires a path that doesnt exsists, i throw an error
